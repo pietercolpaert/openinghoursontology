@@ -1,0 +1,76 @@
+@base <http://semweb.mmlab.be/ns/oh#> .
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix oh: <http://semweb.mmlab.be/ns/oh#> .
+@prefix schema: <http://schema.org/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix rev: <http://purl.org/stuff/rev#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+
+# ---------------------------------------- Metadata----------------------------------------------
+
+<http://semweb.mmlab.be/ns/oh> a owl:Ontology;
+	rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";
+	dct:title "The Opening Hours vocabulary"@en;
+	dct:issued "2013-12-05"^^xsd:date;
+        dct:modified "2013-12-26"^^xsd:date;
+	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert"];
+	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];
+	dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt"].
+
+# ------------------------------------------ Classes --------------------------------------------
+oh:OpeningHours rdf:type owl:Class ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Opening Hours" ;
+	rdfs:comment "A class to identify opening hours" ;
+	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+
+oh:OpeningHoursType rdf:type owl:Class ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Opening Hours Type" ;
+	rdfs:comment "A class to identify the type of opening hours" ;
+	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+
+#
+# Can be a RDFCalendar as well, but doesn't have to be necessarily
+#
+oh:Calendar rdf:type owl:Class ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "A calendar" ;
+	rdfs:comment "A calendar which can be used for opening hours" ;
+	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+
+# ------------------------------------------- Properties -----------------------------------
+
+# The members of the rdf:List should be oh:OpeningHours. I guess I will have to create a new resource which is an intersection of rdf:List and some restrictions for the rdf:List
+oh:calendar rdf:type owl:ObjectProperty ;
+    rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;
+    rdfs:range oh:Calendar ;
+    rdfs:domain rdf:List .
+
+oh:type rdf:type owl:ObjectProperty ;
+    rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;
+    rdfs:range oh:Calendar ;
+    rdfs:domain oh:OpeningHoursType .
+
+### Had to change this to a dataproperty, as there is no good way to identify a calendar component in the spec. See: http://www.w3.org/TR/rdfcal/#comp
+oh:rdfcal rdf:type owl:DatatypeProperty ;
+          rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
+          rdfs:range schema:url, xsd:string ;
+          rdfs:domain oh:Calendar .
+
+oh:closinghours rdf:type owl:DatatypeProperty ;
+                rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
+                rdfs:range xsd:boolean ;
+                rdfs:domain oh:Calendar .
+
+oh:icalurl rdf:type owl:DatatypeProperty ;
+           rdfs:comment "An url towards an ICal calendar in the ical serialization." ;
+           rdfs:range schema:url, xsd:string ;
+           rdfs:domain oh:Calendar .
