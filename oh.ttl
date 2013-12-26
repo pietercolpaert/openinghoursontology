@@ -5,12 +5,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix oh: <http://semweb.mmlab.be/ns/oh#> .
-@prefix schema: <http://schema.org/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix time: <http://www.w3.org/2006/time#> .
-@prefix rev: <http://purl.org/stuff/rev#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 
 
 # ---------------------------------------- Metadata----------------------------------------------
@@ -59,10 +55,10 @@ oh:type rdf:type owl:ObjectProperty ;
     rdfs:range oh:Calendar ;
     rdfs:domain oh:OpeningHoursType .
 
-### Had to change this to a dataproperty, as there is no good way to identify a calendar component in the spec. See: http://www.w3.org/TR/rdfcal/#comp
-oh:rdfcal rdf:type owl:DatatypeProperty ;
+### !!! Problem: There is no good way to identify a calendar component in the spec. See: http://www.w3.org/TR/rdfcal/#comp
+oh:rdfcal rdf:type owl:ObjectProperty ;
           rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
-          rdfs:range schema:url, xsd:string ;
+          rdfs:range rdfs:Resource ;
           rdfs:domain oh:Calendar .
 
 oh:closinghours rdf:type owl:DatatypeProperty ;
@@ -70,7 +66,7 @@ oh:closinghours rdf:type owl:DatatypeProperty ;
                 rdfs:range xsd:boolean ;
                 rdfs:domain oh:Calendar .
 
-oh:icalurl rdf:type owl:DatatypeProperty ;
-           rdfs:comment "An url towards an ICal calendar in the ical serialization." ;
-           rdfs:range schema:url, xsd:string ;
+oh:icalurl rdf:type owl:ObjectProperty ;
+           rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;
+           rdfs:range rdfs:Resource ;
            rdfs:domain oh:Calendar .
