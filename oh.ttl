@@ -18,6 +18,7 @@
         dct:modified "2013-12-26"^^xsd:date;
 	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert"];
 	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];
+	dct:creator [foaf:mbox "Anastasia.Dimou@UGent.be"; foaf:name "Anastasia Dimou";
 	dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt"].
 
 # ------------------------------------------ Classes --------------------------------------------
@@ -55,18 +56,8 @@ oh:type rdf:type owl:ObjectProperty ;
     rdfs:range oh:Calendar ;
     rdfs:domain oh:OpeningHoursType .
 
-### !!! Problem: There is no good way to identify a calendar component in the spec. See: http://www.w3.org/TR/rdfcal/#comp
-oh:rdfcal rdf:type owl:ObjectProperty ;
-          rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
-          rdfs:range rdfs:Resource ;
-          rdfs:domain oh:Calendar .
-
 oh:closinghours rdf:type owl:DatatypeProperty ;
                 rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
                 rdfs:range xsd:boolean ;
                 rdfs:domain oh:Calendar .
 
-oh:icalurl rdf:type owl:ObjectProperty ;
-           rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;
-           rdfs:range rdfs:Resource ;
-           rdfs:domain oh:Calendar .
