@@ -12,7 +12,7 @@
 # ---------------------------------------- Metadata----------------------------------------------
 
 <http://semweb.mmlab.be/ns/oh> a owl:Ontology;
-	rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";
+	rdfs:comment "A vocabulary to describe opening hours using calendars (recommended: iCal, RDFCal or schema.org) published on the Web.";
 	dct:title "The Opening Hours vocabulary"@en;
 	dct:issued "2013-12-05"^^xsd:date;
         dct:modified "2014-06-16"^^xsd:date;
