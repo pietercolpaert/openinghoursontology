@@ -48,16 +48,18 @@ oh:Calendar rdf:type owl:Class ;
 # The members of the rdf:List should be oh:OpeningHours. I guess I will have to create a new resource which is an intersection of rdf:List and some restrictions for the rdf:List
 oh:calendar rdf:type owl:ObjectProperty ;
     rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;
-    rdfs:range oh:Calendar ;
-    rdfs:domain rdf:List .
+    rdfs:domain oh:Calendar ;
+    rdfs:range rdf:List .
 
 oh:type rdf:type owl:ObjectProperty ;
+    rdfs:label "has Opening Hours Type" ;
     rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;
-    rdfs:range oh:Calendar ;
-    rdfs:domain oh:OpeningHoursType .
+    rdfs:domain oh:Calendar ;
+    rdfs:range oh:OpeningHoursType .
 
 oh:closinghours rdf:type owl:DatatypeProperty ;
+                rdfs:label "Are Closing Hours" ;
                 rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
-                rdfs:range xsd:boolean ;
-                rdfs:domain oh:Calendar .
+                rdfs:domain xsd:boolean ;
+                rdfs:range oh:Calendar .
 
