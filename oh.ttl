@@ -7,12 +7,15 @@
 @prefix oh: <http://semweb.mmlab.be/ns/oh#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 
 # ---------------------------------------- Metadata----------------------------------------------
 
-<http://semweb.mmlab.be/ns/oh> a owl:Ontology;
-	rdfs:comment "A vocabulary to describe opening hours using calendars (recommended: iCal, RDFCal or schema.org) published on the Web.";
+<http://semweb.mmlab.be/ns/oh> a owl:Ontology, voaf:Vocabulary;
+	vann:preferredNamespacePrefix "oh";
+	vann:preferredNamespaceUri <http://semweb.mmlab.be/ns/oh#> ;
+	dct:description "A vocabulary to describe opening hours using calendars (recommended: iCal, RDFCal or schema.org) published on the Web.";
 	dct:title "The Opening Hours vocabulary"@en;
 	dct:issued "2013-12-05"^^xsd:date;
         dct:modified "2014-06-16"^^xsd:date;
