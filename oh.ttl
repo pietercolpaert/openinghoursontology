@@ -18,7 +18,7 @@
 	dct:description "A vocabulary to describe opening hours using calendars (recommended: iCal, RDFCal or schema.org) published on the Web.";
 	dct:title "The Opening Hours vocabulary"@en;
 	dct:issued "2013-12-05"^^xsd:date;
-        dct:modified "2014-06-16"^^xsd:date;
+        dct:modified "2015-05-22"^^xsd:date;
 	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert"];
 	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];
 	dct:creator [foaf:mbox "Anastasia.Dimou@UGent.be"; foaf:name "Anastasia Dimou"];
@@ -66,3 +66,7 @@ oh:closinghours rdf:type owl:DatatypeProperty ;
                 rdfs:domain xsd:boolean ;
                 rdfs:range oh:Calendar .
 
+oh:hasOpeningHours rdf:type owl:DatatypeProperty ;
+                   rdfs:label "Has Opening Hours" ;
+                   rdfs:comment "Link a certain thing to a description of opening hours";
+                   rdfs:range oh:OpeningHours .
